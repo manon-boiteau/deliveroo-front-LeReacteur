@@ -2,7 +2,8 @@
 
 🗓 May 2021.  
 👉🏻 Look at the backend repo!  
-🪄 Frontend in React.js - Deliveroo page 🥖 Le Pain Quotidien.
+🪄 Frontend in React.js - Deliveroo page 🥖 Le Pain Quotidien.  
+⇢ Check [that](https://mydeliveroo-lereacteur-2021.netlify.app/)
 
 ## Welcome in my school exercice (Deliveroo page)
 
