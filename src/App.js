@@ -20,7 +20,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:3100/");
+    const response = await axios.get(
+      "https://git.heroku.com/deliveroo-lereacteur.git"
+    );
     setData(response.data);
     setIsLoading(false);
   };
