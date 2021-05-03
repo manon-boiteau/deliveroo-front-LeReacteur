@@ -1,1 +1,117 @@
-/* Other rules */
+/* Fonts */
+
+/* Global rules */
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #f2f5f5;
+}
+.wrapper {
+  margin: 0 auto;
+  width: 80vw;
+}
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 40px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+p {
+  color: rgb(134, 134, 134);
+}
+.icon-star {
+  font-size: 17px;
+  color: #ff8005;
+  margin-left: 20px;
+}
+
+/* header */
+header {
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid rgb(243, 243, 243);
+}
+header img {
+  width: 150px;
+}
+
+/* Description */
+.description {
+  background-color: white;
+  padding: 30px 0;
+  margin-bottom: 20px;
+}
+.description > div:first-child {
+  display: flex;
+  align-items: center;
+}
+.description p {
+  font-size: 19px;
+}
+.description img {
+  width: 350px;
+  border-radius: 5px;
+}
+
+/* Categories */
+.bloc {
+  width: 55vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+.bloc > div:nth-child(2n) {
+  margin-left: 20px;
+}
+.bloc-meal {
+  background-color: white;
+
+  margin-bottom: 20px;
+  border-radius: 5px;
+  width: calc(100% / 2 - 10px);
+  height: 162px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.bloc-meal p {
+  font-size: 14px;
+  color: rgb(134, 134, 134);
+  margin-bottom: 20px;
+  line-height: 20px;
+  height: 40px;
+  overflow: hidden;
+}
+.bloc-detail span {
+  font-size: 17px;
+  color: rgb(134, 134, 134);
+}
+.bloc-detail > div {
+  display: flex;
+  align-items: center;
+}
+.bloc-detail .star {
+  font-size: 12px;
+  color: #ff8005;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.bloc-meal img {
+  width: 132px;
+  height: 132px;
+  border-radius: 5px;
+  object-fit: cover;
+  margin-left: 10px;
+}
