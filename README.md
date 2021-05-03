@@ -11,6 +11,10 @@
 - Layout of Deliveroo page - Le Pain Quotidien
 - Responsive design
 
+![Deliveroo desktop](src/assets/img/deliveroo-desktop.png)
+![Deliveroo mobile](src/assets/img/deliveroo-tablette.png)
+![Deliveroo mobile](src/assets/img/deliveroo-mobile.png)
+
 ## Languages
 
 HTML5, CSS3 & React.js.
