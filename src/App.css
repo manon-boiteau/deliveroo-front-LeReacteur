@@ -1,4 +1,6 @@
 /* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+/* 300 - 400 - 600 */
 
 /* Global rules */
 * {
@@ -6,6 +8,8 @@
 }
 body {
   background-color: #f2f5f5;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
 }
 .wrapper {
   margin: 0 auto;
@@ -13,19 +17,20 @@ body {
 }
 h1 {
   font-size: 32px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 40px;
 }
 
 h2 {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 600;
   margin-bottom: 15px;
   margin-top: 40px;
 }
 
 h3 {
   font-size: 18px;
+  font-weight: 400;
   margin-bottom: 10px;
 }
 p {
@@ -62,6 +67,7 @@ header img {
 }
 .description img {
   width: 350px;
+  margin-left: 30px;
   border-radius: 5px;
 }
 
@@ -76,7 +82,6 @@ header img {
 }
 .bloc-meal {
   background-color: white;
-
   margin-bottom: 20px;
   border-radius: 5px;
   width: calc(100% / 2 - 10px);
@@ -104,7 +109,7 @@ header img {
 .bloc-detail .star {
   font-size: 12px;
   color: #ff8005;
-  font-weight: bold;
+  font-weight: 600;
   margin-left: 10px;
 }
 
