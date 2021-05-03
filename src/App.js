@@ -21,7 +21,7 @@ function App() {
 
   const fetchData = async () => {
     const response = await axios.get(
-      "https://git.heroku.com/deliveroo-lereacteur.git"
+      "https://deliveroo-lereacteur.herokuapp.com/"
     );
     setData(response.data);
     setIsLoading(false);
