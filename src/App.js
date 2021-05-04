@@ -67,8 +67,8 @@ function App() {
                     return (
                       <div key={index} className="bloc-meal">
                         <div className="bloc-detail">
-                          <h3>{elem.title}</h3>
-                          <p>{elem.description}</p>
+                          {elem.title ? <h3>{elem.title}</h3> : null}
+                          {elem.description ? <p>{elem.description}</p> : null}
                           <div>
                             <span>{elem.price} €</span>
                             {elem.popular ? (
