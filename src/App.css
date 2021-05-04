@@ -102,7 +102,7 @@ header img {
 .bloc-meal p {
   font-size: 14px;
   color: var(--main-gray-p);
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   line-height: 20px;
   height: 40px;
   overflow: hidden;
