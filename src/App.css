@@ -7,6 +7,7 @@
   --bg-body: #f2f5f5;
   --main-gray-p: #868686;
   --popular-orange: #ff8005;
+  --deliveroo-green: #01ccbc;
 
   --white: #ffffff;
 }
@@ -51,7 +52,18 @@ p {
   margin-left: 20px;
 }
 
-/* header */
+/* Spinner */
+.spin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 200px;
+  font-size: 30px;
+  color: var(--deliveroo-green);
+  margin: auto;
+}
+
+/* Header */
 header {
   background-color: var(--white);
   padding: 10px;
@@ -80,7 +92,25 @@ header img {
   border-radius: 5px;
 }
 
+/* Basket */
+.basket {
+  background-color: var(--white);
+  width: 350px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.basket button {
+  background-color: aqua;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
 /* Categories */
+.categories {
+  border: 1px solid blue;
+  position: relative;
+}
 .bloc {
   width: 700px;
   display: flex;
@@ -98,6 +128,8 @@ header img {
   padding: 15px;
   display: flex;
   justify-content: space-between;
+  border: 1px solid red;
+  cursor: pointer;
 }
 .bloc-meal p {
   font-size: 14px;
