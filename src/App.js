@@ -1,6 +1,12 @@
 import "./App.css";
 
 /* Import Components */
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Categories from "./components/Categories";
+import Button from "./components/Button";
+import BasketTitle from "./components/BasketTitle";
+import BasketTotal from "./components/BasketTotal";
 import Counter from "./components/Couter";
 
 /* Import Axios */
@@ -9,13 +15,10 @@ import axios from "axios";
 /* Import useState() & useEffect() from React */
 import { useState, useEffect } from "react";
 
-/* Import images */
-import logo from "./assets/img/deliveroo-logo.svg";
-
 /* Import Fontawsome */
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faStar, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 library.add(faStar, faSpinner);
 
 function App() {
@@ -23,6 +26,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [inBasket, setInBasket] = useState([]);
   const [counter, setCounter] = useState([]);
+  const [quantity, setQuantity] = useState(1);
 
   /* Import data from server */
   const fetchData = async () => {
@@ -40,24 +44,54 @@ function App() {
   /* Counter */
   const counters = () => {
     const newCounter = [...counter];
-    newCounter.push(0);
+    newCounter.push(1);
     setCounter(newCounter);
   };
 
-  const meals = (meal, id) => {
+  /* Basket */
+  const meals = (meal) => {
     const newMeal = [...inBasket];
     if (inBasket.length === 0) {
-      newMeal.push(meal);
+      newMeal.push({
+        title: meal.title,
+        id: meal.id,
+        quantity: 1,
+        price: meal.price,
+      });
       setInBasket(newMeal);
+      counters();
     }
+
+    let isPresent = false;
     if (inBasket.length > 0) {
-      const arr = [];
       for (let i = 0; i < inBasket.length; i++) {
-        if (inBasket[i].id !== id) {
-          arr.push(1);
+        if (inBasket[i].id === meal.id) {
+          isPresent = true;
         }
       }
+      if (isPresent === false) {
+        newMeal.push({
+          title: meal.title,
+          id: meal.id,
+          quantity: 1,
+          price: meal.price,
+        });
+        setInBasket(newMeal);
+        counters();
+      }
     }
+  };
+
+  const subPrice = () => {
+    let result = 0;
+    for (let i = 0; i < inBasket.length; i++) {
+      result += Number(inBasket[i].price) * Number(inBasket[i].quantity);
+    }
+    return result;
+  };
+
+  const totalPrice = () => {
+    return subPrice() + 2.5;
   };
 
   return isLoading ? (
@@ -67,102 +101,54 @@ function App() {
     </span>
   ) : (
     <>
-      <header>
-        <div className="wrapper">
-          <img src={logo} alt="Deliveroo logo." />
-        </div>
-      </header>
-
+      <Header />
       <main>
-        <div className="description">
-          <div className="wrapper">
-            <div>
-              <h1>{data.restaurant.name}</h1>
-              <p>{data.restaurant.description}</p>
-            </div>
-            <div>
-              <img
-                src={data.restaurant.picture}
-                alt="Brunch Le Pain Quotidien."
-              />
-            </div>
-          </div>
-        </div>
+        <Hero data={data} />
 
         <div className="wrapper categories">
-          {data.categories.map((elem, index) => {
-            return (
-              elem.meals.length > 0 && (
-                <div key={index}>
-                  <h2>{elem.name}</h2>
-                  <div className="bloc">
-                    {elem.meals.map((elem, index) => {
-                      return (
-                        <div
-                          key={elem.id}
-                          className="bloc-meal"
-                          onClick={() => {
-                            meals(elem, elem.id);
-                            counters();
-                          }}
-                        >
-                          <div className="bloc-detail">
-                            {elem.title ? <h3>{elem.title}</h3> : null}
-                            {elem.description ? (
-                              <p>{elem.description}</p>
-                            ) : null}
-                            <div>
-                              <span>{elem.price} €</span>
-                              {elem.popular ? (
-                                <FontAwesomeIcon
-                                  icon="star"
-                                  className="icon-star"
-                                />
-                              ) : null}
-                              <span className="star">
-                                {elem.popular ? "Populaire" : null}
-                              </span>
-                            </div>
-                          </div>
-                          <div>
-                            {elem.picture ? (
-                              <img src={elem.picture} alt={elem.title} />
-                            ) : null}
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )
-            );
-          })}
+          <Categories data={data} meals={meals} />
+
           <div className="basket">
-            <button>Valider mon panier</button>
+            <Button />
             {inBasket.length > 0 ? (
               inBasket.map((elem, index) => {
+                console.log(elem);
                 return (
                   <div key={elem.id}>
-                    <Counter
-                      counter={counter}
-                      setCounter={setCounter}
-                      index={index}
-                      key={index}
-                    />
-
-                    <span>{elem.title}</span>
-                    <span>{elem.price} €</span>
-                    <span>Sous-total</span>
-                    <span></span>
-                    <span>Frais de livraison</span>
-                    <span>2,50 €</span>
-                    <span>Total</span>
-                    <span>{elem.price} €</span>
+                    <div className="basket-count">
+                      <Counter
+                        counter={counter}
+                        setCounter={setCounter}
+                        index={index}
+                        quantity={quantity}
+                        setQuantity={setQuantity}
+                        subPrice={subPrice}
+                      />
+                      <BasketTitle elem={elem} />
+                    </div>
                   </div>
                 );
               })
             ) : (
               <p>Votre panier est vide</p>
+            )}
+            {inBasket.length > 0 && (
+              <>
+                <div>
+                  <p>Sous-total</p>
+                  <span>{subPrice()} €</span>
+                </div>
+
+                <div>
+                  <p>Frais de livraison</p>
+                  <span>2,50 €</span>
+                </div>
+
+                <div>
+                  <p>Total</p>
+                  <span>{totalPrice()} €</span>
+                </div>
+              </>
             )}
           </div>
         </div>
@@ -172,21 +158,3 @@ function App() {
 }
 
 export default App;
-
-/* <div className="basket">
-  <button>Valider mon panier</button>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span>Sous-total</span>
-  <span></span>
-  <span>Frais de livraison</span>
-  <span></span>
-  <span>Total</span>
-  <span></span>
-</div> */
-
-// const newMeal = [...inBasket];
-// newMeal.push(elem);
-// setInBasket(newMeal); // OK

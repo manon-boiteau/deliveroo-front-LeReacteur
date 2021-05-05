@@ -99,16 +99,59 @@ header img {
   position: absolute;
   top: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
+.basket > div {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid red;
+}
+
 .basket button {
-  background-color: aqua;
   margin-bottom: 30px;
   cursor: pointer;
 }
+.validation {
+  background-color: var(--deliveroo-green);
+  color: var(--white);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  border: none;
+  margin: 0 auto;
+  width: 90%;
+  height: 50px;
+  border-radius: 5px;
+}
+.basket-count {
+  background-color: bisque;
+  width: 100%;
+  display: flex;
+}
+.counter {
+  background-color: coral;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+.basket-title {
+  background-color: cornsilk;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .basket div:first-child {
+  display: flex;
+  border: 2px solid green;
+}
+.basket div:first-child > div:nth-child(2) {
+  display: flex;
+} */
 
 /* Categories */
 .categories {
-  border: 1px solid blue;
   position: relative;
 }
 .bloc {
@@ -128,7 +171,6 @@ header img {
   padding: 15px;
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
   cursor: pointer;
 }
 .bloc-meal p {
