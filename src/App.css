@@ -107,6 +107,7 @@ header img {
   display: flex;
   justify-content: space-between;
   border: 1px solid red;
+  padding: 8px;
 }
 
 .basket button {
@@ -140,6 +141,11 @@ header img {
   width: 80%;
   display: flex;
   justify-content: space-between;
+}
+.basket-title p {
+  border: 2px solid blue;
+  max-width: 70%;
+  margin-left: 5px;
 }
 
 /* .basket div:first-child {

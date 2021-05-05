@@ -1,3 +1,4 @@
+/* Import useState() & useEffect() from React */
 const Counter = ({
   counter,
   setCounter,
@@ -5,6 +6,7 @@ const Counter = ({
   setQuantity,
   quantity,
   subPrice,
+  inBasket,
 }) => {
   return (
     <div className="counter">
