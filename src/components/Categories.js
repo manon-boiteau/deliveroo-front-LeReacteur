@@ -1,7 +1,7 @@
 /* Import Fontawsome */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Categories = ({ data, meals }) => {
+const Categories = ({ data, addMeals }) => {
   return (
     <>
       {data.categories.map((elem, index) => {
@@ -10,13 +10,13 @@ const Categories = ({ data, meals }) => {
             <div key={index}>
               <h2>{elem.name}</h2>
               <div className="bloc">
-                {elem.meals.map((elem, index) => {
+                {elem.meals.map((elem) => {
                   return (
                     <div
                       key={elem.id}
                       className="bloc-meal"
                       onClick={() => {
-                        meals(elem);
+                        addMeals(elem);
                       }}
                     >
                       <div className="bloc-detail">

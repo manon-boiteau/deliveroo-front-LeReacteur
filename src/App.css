@@ -102,12 +102,16 @@ header img {
   display: flex;
   flex-direction: column;
   padding: 10px;
+  border-radius: 5px;
 }
 .basket > div {
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding: 8px;
+}
+.basket p {
+  color: black;
 }
 
 .basket button {
@@ -147,14 +151,12 @@ header img {
   max-width: 70%;
   margin-left: 5px;
 }
-
-/* .basket div:first-child {
-  display: flex;
-  border: 2px solid green;
+.sub-tot-1 {
+  border-top: 1px solid var(--main-gray-p);
 }
-.basket div:first-child > div:nth-child(2) {
-  display: flex;
-} */
+.sub-tot-2 {
+  border-bottom: 1px solid var(--main-gray-p);
+}
 
 /* Categories */
 .categories {

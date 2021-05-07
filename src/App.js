@@ -6,8 +6,6 @@ import Hero from "./components/Hero";
 import Categories from "./components/Categories";
 import Button from "./components/Button";
 import BasketTitle from "./components/BasketTitle";
-import BasketTotal from "./components/BasketTotal";
-import Counter from "./components/Couter";
 
 /* Import Axios */
 import axios from "axios";
@@ -25,8 +23,6 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [inBasket, setInBasket] = useState([]);
-  const [counter, setCounter] = useState([]);
-  const [quantity, setQuantity] = useState(1);
 
   /* Import data from server */
   const fetchData = async () => {
@@ -41,17 +37,16 @@ function App() {
     fetchData();
   }, []);
 
-  /* Counter */
-  const counters = () => {
-    const newCounter = [...counter];
-    newCounter.push(1);
-    setCounter(newCounter);
-  };
-
   /* Basket */
-  const meals = (meal) => {
+  const addMeals = (meal) => {
     const newMeal = [...inBasket];
-    if (inBasket.length === 0) {
+
+    const isPresent = newMeal.find((elem) => elem.id === meal.id);
+
+    if (isPresent) {
+      isPresent.quantity++;
+      setInBasket(newMeal);
+    } else {
       newMeal.push({
         title: meal.title,
         id: meal.id,
@@ -59,27 +54,21 @@ function App() {
         price: meal.price,
       });
       setInBasket(newMeal);
-      counters();
     }
+  };
 
-    let isPresent = false;
-    if (inBasket.length > 0) {
-      for (let i = 0; i < inBasket.length; i++) {
-        if (inBasket[i].id === meal.id) {
-          isPresent = true;
-        }
-      }
-      if (isPresent === false) {
-        newMeal.push({
-          title: meal.title,
-          id: meal.id,
-          quantity: 1,
-          price: meal.price,
-        });
-        setInBasket(newMeal);
-        counters();
-      }
+  const removeMeals = (meal) => {
+    const newMeal = [...inBasket];
+
+    const isPresent = newMeal.find((elem) => elem.id === meal.id);
+
+    if (meal.quantity === 1) {
+      const index = newMeal.indexOf(isPresent);
+      newMeal.splice(index, 1);
+    } else {
+      isPresent.quantity--;
     }
+    setInBasket(newMeal);
   };
 
   const subPrice = () => {
@@ -106,24 +95,36 @@ function App() {
         <Hero data={data} />
 
         <div className="wrapper categories">
-          <Categories data={data} meals={meals} />
+          <Categories data={data} addMeals={addMeals} />
 
           <div className="basket">
             <Button />
             {inBasket.length > 0 ? (
               inBasket.map((elem, index) => {
-                console.log(elem);
                 return (
                   <div key={elem.id}>
                     <div className="basket-count">
-                      <Counter
-                        counter={counter}
-                        setCounter={setCounter}
-                        index={index}
-                        quantity={quantity}
-                        setQuantity={setQuantity}
-                        subPrice={subPrice}
-                      />
+                      <div className="counter">
+                        <button
+                          className="btn-minus"
+                          index={index}
+                          onClick={() => {
+                            removeMeals(elem);
+                          }}
+                        >
+                          -
+                        </button>
+                        <span index={index}>{elem.quantity}</span>
+                        <button
+                          className="btn-plus"
+                          index={index}
+                          onClick={() => {
+                            addMeals(elem);
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
                       <BasketTitle elem={elem} />
                     </div>
                   </div>
@@ -134,12 +135,12 @@ function App() {
             )}
             {inBasket.length > 0 && (
               <>
-                <div>
+                <div className="sub-tot-1">
                   <p>Sous-total</p>
                   <span>{subPrice()} €</span>
                 </div>
 
-                <div>
+                <div className="sub-tot-2">
                   <p>Frais de livraison</p>
                   <span>2,50 €</span>
                 </div>
