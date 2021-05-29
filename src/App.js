@@ -24,6 +24,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [inBasket, setInBasket] = useState([]);
 
+  // State for disabled basket button
+  const [disabled, setDisabled] = useState(true);
+
   /* Import data from server */
   const fetchData = async () => {
     const response = await axios.get(
@@ -74,13 +77,13 @@ function App() {
   const subPrice = () => {
     let result = 0;
     for (let i = 0; i < inBasket.length; i++) {
-      result += Number(inBasket[i].price) * Number(inBasket[i].quantity);
+      result += inBasket[i].price * inBasket[i].quantity;
     }
-    return result;
+    return Math.round(result * 100) / 100;
   };
 
   const totalPrice = () => {
-    return subPrice() + 2.5;
+    return Math.round(subPrice() + 2.5 * 100) / 100;
   };
 
   return isLoading ? (
@@ -98,7 +101,11 @@ function App() {
           <Categories data={data} addMeals={addMeals} />
 
           <div className="basket">
-            <Button />
+            <Button
+              disabled={disabled}
+              setDisabled={setDisabled}
+              inBasket={inBasket}
+            />
             {inBasket.length > 0 ? (
               inBasket.map((elem, index) => {
                 return (
@@ -114,7 +121,9 @@ function App() {
                         >
                           -
                         </button>
-                        <span index={index}>{elem.quantity}</span>
+                        <span className="counter-quantity" index={index}>
+                          {elem.quantity}
+                        </span>
                         <button
                           className="btn-plus"
                           index={index}
@@ -131,7 +140,7 @@ function App() {
                 );
               })
             ) : (
-              <p>Votre panier est vide</p>
+              <p className="empty-basket">Votre panier est vide</p>
             )}
             {inBasket.length > 0 && (
               <>

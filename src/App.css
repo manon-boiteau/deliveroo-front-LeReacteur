@@ -8,6 +8,7 @@
   --main-gray-p: #868686;
   --popular-orange: #ff8005;
   --deliveroo-green: #01ccbc;
+  --disabled-grey: #e2e5e5;
 
   --white: #ffffff;
 }
@@ -118,6 +119,17 @@ header img {
   margin-bottom: 30px;
   cursor: pointer;
 }
+.btn-minus,
+.btn-plus {
+  color: var(--deliveroo-green);
+  background-color: var(--white);
+  border: 2px solid var(--deliveroo-green);
+  border-radius: 50%;
+  font-weight: 700;
+}
+span.counter-quantity {
+  margin-right: 10;
+}
 .validation {
   background-color: var(--deliveroo-green);
   color: var(--white);
@@ -129,25 +141,32 @@ header img {
   height: 50px;
   border-radius: 5px;
 }
+.btn-disabled {
+  background-color: var(--disabled-grey);
+  color: var(--main-gray-p);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  border: none;
+  margin: 0 auto;
+  width: 90%;
+  height: 50px;
+  border-radius: 5px;
+}
 .basket-count {
-  background-color: bisque;
   width: 100%;
   display: flex;
 }
 .counter {
-  background-color: coral;
-  width: 20%;
+  width: 25%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 .basket-title {
-  background-color: cornsilk;
   width: 80%;
   display: flex;
   justify-content: space-between;
 }
 .basket-title p {
-  border: 2px solid blue;
   max-width: 70%;
   margin-left: 5px;
 }
@@ -157,13 +176,19 @@ header img {
 .sub-tot-2 {
   border-bottom: 1px solid var(--main-gray-p);
 }
+p.empty-basket {
+  text-align: center;
+  color: var(--main-gray-p);
+  font-weight: 500;
+  font-size: 14px;
+}
 
 /* Categories */
 .categories {
   position: relative;
 }
 .bloc {
-  width: 700px;
+  width: 65%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -212,17 +237,38 @@ header img {
   margin-left: 10px;
 }
 
-@media (max-width: 980px) {
+/* Media queries */
+@media (max-width: 1326px) {
   /* Categories */
   .bloc {
-    width: 80vw;
-    flex-direction: column;
+    width: 60%;
   }
   .bloc > div:nth-child(2n) {
     margin-left: 0;
   }
   .bloc-meal {
     width: 100%;
+  }
+}
+
+@media (max-width: 1143px) {
+  /* Categories */
+  .bloc {
+    width: 55%;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Categories */
+  .bloc {
+    width: 50%;
+  }
+}
+
+@media (max-width: 912px) {
+  /* Basket */
+  .basket {
+    width: 300px;
   }
 }
 
@@ -249,5 +295,15 @@ header img {
     object-fit: cover;
     margin-left: 0;
     margin-bottom: 30px;
+  }
+
+  /* Basket */
+  .basket {
+    display: none;
+  }
+
+  /* Categories */
+  .bloc {
+    width: 100%;
   }
 }
