@@ -9,7 +9,7 @@
 ---
 
 Deliveroo clone (Le Pain Quotidien page) made at [Le Reacteur](https://www.lereacteur.io/) Bootcamp.  
-3 screens are availables: Le Pain Qutidien desktop (empty basket), Le Pain Quotidien tablette with breakfast to order & the mobile version.
+3 screens are availables: Le Pain Quotidien desktop (empty basket), Le Pain Quotidien tablette with breakfast to order & the mobile version.
 
 ![Screen 1](src/assets/img/screen-1.png)  
 ![Screen 2](src/assets/img/screen-2.png)
