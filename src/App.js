@@ -83,7 +83,8 @@ function App() {
   };
 
   const totalPrice = () => {
-    return Math.round(subPrice() + 2.5 * 100) / 100;
+    return ((subPrice() + 2.5) * 100 / 100).toFixed(2);
+    // return subPrice();
   };
 
   return isLoading ? (
