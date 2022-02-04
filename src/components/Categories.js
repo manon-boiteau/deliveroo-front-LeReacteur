@@ -1,4 +1,3 @@
-/* Import Fontawsome */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Categories = ({ data, addMeals }) => {

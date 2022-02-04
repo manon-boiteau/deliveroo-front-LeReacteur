@@ -10,24 +10,18 @@ import BasketTitle from "./components/BasketTitle";
 /* Import Axios */
 import axios from "axios";
 
-/* Import useState() & useEffect() from React */
 import { useState, useEffect } from "react";
-
-/* Import Fontawsome */
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faStar, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faStar, faSpinner);
 
 function App() {
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [inBasket, setInBasket] = useState([]);
-
-  // State for disabled basket button
   const [disabled, setDisabled] = useState(true);
 
-  /* Import data from server */
   const fetchData = async () => {
     const response = await axios.get(
       "https://deliveroo-lereacteur.herokuapp.com/"
@@ -40,7 +34,6 @@ function App() {
     fetchData();
   }, []);
 
-  /* Basket */
   const addMeals = (meal) => {
     const newMeal = [...inBasket];
 
@@ -83,15 +76,11 @@ function App() {
   };
 
   const totalPrice = () => {
-    return ((subPrice() + 2.5) * 100 / 100).toFixed(2);
-    // return subPrice();
+    return (((subPrice() + 2.5) * 100) / 100).toFixed(2);
   };
 
   return isLoading ? (
-    <span className="spin">
-      {/* <FontAwesomeIcon icon="spinner" spin /> */}
-      En cours de chargement...
-    </span>
+    <span className="spin">En cours de chargement...</span>
   ) : (
     <>
       <Header />

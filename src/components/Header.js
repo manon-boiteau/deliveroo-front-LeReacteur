@@ -1,4 +1,3 @@
-/* Import images */
 import logo from "../assets/img/deliveroo-logo.svg";
 
 const Header = () => {

@@ -1,6 +1,5 @@
 /* Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
-/* 300 - 400 - 600 */
 
 /* Variables */
 :root {
@@ -9,7 +8,6 @@
   --popular-orange: #ff8005;
   --deliveroo-green: #01ccbc;
   --disabled-grey: #e2e5e5;
-
   --white: #ffffff;
 }
 
@@ -31,14 +29,12 @@ h1 {
   font-weight: 600;
   margin-bottom: 40px;
 }
-
 h2 {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 15px;
   margin-top: 40px;
 }
-
 h3 {
   font-size: 18px;
   font-weight: 400;
@@ -114,7 +110,6 @@ header img {
 .basket p {
   color: black;
 }
-
 .basket button {
   margin-bottom: 30px;
   cursor: pointer;
@@ -228,7 +223,6 @@ p.empty-basket {
   font-weight: 600;
   margin-left: 10px;
 }
-
 .bloc-meal img {
   width: 132px;
   height: 132px;
